@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Who's that Pokemon?</title>
+</head>
+<body>
+    <main class="mainContainer" >
+        <div class="card">
+
+            <div id="pokedex" class="pokedex">
+                <p>
+                    <input type="text" id="pokemon" class="input" placeholder="Search Pokemon by ID">
+                </p>
+
+                <button onclick="fetchData()" class="button" >Search Pokemon</button>
+           
+           
+           
+                <div class="pokemonData">
+                    <img id="picture" src="" class="pokeImg">
+                    <p>
+                        <label for="">POKEMON ID: </label><span id="number" class="pokeInfo"></span>
+                    </p>
+                    <p>
+                        <label for="">NAME: </label><span id="name" class="pokeInfo"></span>
+                    </p>
+                </div>
+           
+            </div>
+
+                   
+
+            </div>
+
+        </div>
+    </main>    
+
+  
+    <script>
+        async function fetchData(){
+            const inputVale = document.getElementById("pokemon").value;
+            const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${inputVale}`);
+            const json = await data.json();
+
+            document.getElementById("number").innerText = json.id;
+            document.getElementById("name").innerText = json.name;
+            document.getElementById("picture").src = json.sprites.front_default;
+        
+        }
+
+
+
+    </script>
+</body>
+</html>
